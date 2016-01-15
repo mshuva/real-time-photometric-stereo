@@ -1,2 +1,2 @@
 # photometric_stereo
-Photometric Stereo with Computer Screen Lighting
+REAL-TIME Photometric Stereo with Computer Screen Lighting
