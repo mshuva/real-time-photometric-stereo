@@ -7,7 +7,7 @@ close all; clear all; clc;
 initDemo;
 
 while(1)
-	tic
+	% tic
 	getImage;							% Acquire images
 	[m,n] = size(img);					% Get size of image
 	nIters  = 1000;                     % # of iterative least-square steps
@@ -30,7 +30,8 @@ while(1)
 	[A, b] = constructSurface(DFDX, DFDY, lambda);
 
 	% Solve least-squares problem (MATLAB IMPLEMENTATION)
-	[fxy, ~] = lsqr(A, b, [], nIters);			% MATLAB implmentation
+	% [fxy, ~] = lsqr(A, b, [], nIters);			% MATLAB implmentation
+	fxy = A\b;
 
 	% Solve least-squares problem (OCTAVE IMPLEMENTATION)
 	% 
@@ -58,5 +59,5 @@ while(1)
 	figure(2);
 	subplot(1,2,1); imshow(FXY, []);  title('depth map');   colorbar;
 	subplot(1,2,2); surfplot(FXY);    title('surface');
-	toc
+	% toc
 end

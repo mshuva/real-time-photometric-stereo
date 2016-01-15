@@ -24,7 +24,7 @@
 % 3. Repeat loop with next configuration
 for i = 1:4
 	figure(1)
-	imshow(L{i})
+	showFullscreen(L{i})
 	colormap(gray)
 	drawnow
 	pause(1)
