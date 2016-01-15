@@ -28,7 +28,7 @@ DFDY(isnan(DFDY) | ~M) = 0;         % Clean data and apply mask
 
 % Solve least-squares problem (OCTAVE IMPLEMENTATION)
 % 
-% fxy = pcg(A'*A,A'*b);						% Ocatve implmentation
+% fxy = pcg(A'*A,A'*b);						% Octave implmentation
 
 % Format surface
 FXY = reshape(fxy, [m, n]);         % Reshape into matrix
