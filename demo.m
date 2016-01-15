@@ -12,7 +12,7 @@ N = [U(:,2:3) U(:,1)];				% Top 3 left singular vectors correspond to (z,x,y) no
 N = reshape(N,[m,n,3]);				% Reshape into matrix
 
 M = img;
-M = (M > 0);
+M = (M > 0.3);
 
 % Compute gradients from normals
 DFDX = -N(:,:,1) ./ N(:,:,3);
