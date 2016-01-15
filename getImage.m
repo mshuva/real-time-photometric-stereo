@@ -1,21 +1,21 @@
 %% Code courtesy of Jeffrey Lu and the Magneto project from EECS 451 (Fall 2014)
 
-close all; clear all;					% close figures and release camera
+% close all; clear all;					% close figures and release camera
 
-% ------------------------------ INITIALIZE WEBCAM ------------------------------
-vidDevice = imaq.VideoDevice;
-vidInfo = imaqhwinfo(vidDevice); % Acquire input video property
-% hVideoIn = vision.VideoPlayer('Name', 'Final Video','Position', [100 100 vidInfo.MaxWidth+20 vidInfo.MaxHeight+30]); 	% not sure what this is for...
-% ------------------------------ INITIALIZE WEBCAM ------------------------------
+% % ------------------------------ INITIALIZE WEBCAM ------------------------------
+% vidDevice = imaq.VideoDevice;
+% vidInfo = imaqhwinfo(vidDevice); % Acquire input video property
+% % hVideoIn = vision.VideoPlayer('Name', 'Final Video','Position', [100 100 vidInfo.MaxWidth+20 vidInfo.MaxHeight+30]); 	% not sure what this is for...
+% % ------------------------------ INITIALIZE WEBCAM ------------------------------
 
 
-% ------------------------------ GENERATE LIGHTING ------------------------------
-config1 = [1 0];
-config2 = [0 1];
-config3 = [1; 0];
-config4 = [0; 1];
-L = {config1, config2, config3, config4};
-% ------------------------------ GENERATE LIGHTING ------------------------------
+% % ------------------------------ GENERATE LIGHTING ------------------------------
+% config1 = [1 0];
+% config2 = [0 1];
+% config3 = [1; 0];
+% config4 = [0; 1];
+% L = {config1, config2, config3, config4};
+% % ------------------------------ GENERATE LIGHTING ------------------------------
 
 
 % ------------------------------ IMAGE ACQUISITION ------------------------------
@@ -23,7 +23,8 @@ L = {config1, config2, config3, config4};
 % 2. Aquire the image and store it into the I matrix
 % 3. Repeat loop with next configuration
 for i = 1:4
-	showFullscreen(L{i})
+	figure(1)
+	imshow(L{i})
 	colormap(gray)
 	drawnow
 	pause(1)
