@@ -7,6 +7,7 @@ close all; clear all; clc;
 initDemo;
 
 while(1)
+	tic
 	getImage;							% Acquire images
 	[m,n] = size(img);					% Get size of image
 	nIters  = 1000;                     % # of iterative least-square steps
@@ -54,7 +55,8 @@ while(1)
 
 	% display('Finished reconstructing surface. Plotting results.')
 
-	figure(2);  surfplot(FXY)
-	% subplot(1,2,1); imshow(FXY, []);  title('depth map');   colorbar;
-	% subplot(1,2,2); surfplot(FXY);    title('surface');
+	figure(2);
+	subplot(1,2,1); imshow(FXY, []);  title('depth map');   colorbar;
+	subplot(1,2,2); surfplot(FXY);    title('surface');
+	toc
 end
