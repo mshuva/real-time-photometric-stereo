@@ -27,13 +27,15 @@ for i = 1:4
 	showFullscreen(L{i})
 	colormap(gray)
 	drawnow
-	pause(1)
-	img = step(vidDevice);							% Acquire single frame
-	img = imresize(rgb2gray(flipdim(img,2)),0.25); 	% Obtain the mirror image for displaying
+	pause(0.5)
+	images{i} = step(vidDevice);							% Acquire single frame
+	img = imresize(rgb2gray(flipdim(images{i},2)),0.25); 	% Obtain the mirror image for displaying
 	I(:,i) = img(:);								% Store vectorized image as column
 end
 % ------------------------------ IMAGE ACQUISITION ------------------------------
 
 I = double(I);				% Needs to be a double for SVD to work
-% imagesc(img)
-% colormap(gray)							% Set colormap to grayscale for viewing
+
+% for i=1:4
+% 	subplot(2,2,i); imshow(flipdim(images{i},2))
+% end

@@ -2,12 +2,12 @@
 % Photometric stereo demo
 %
 
-close all; clear all; clc;
+clear all; clc;
 
 initDemo;
 
-while(1)
-	% tic
+% while(1)
+	tic
 	getImage;							% Acquire images
 	[m,n] = size(img);					% Get size of image
 	nIters  = 1000;                     % # of iterative least-square steps
@@ -18,7 +18,7 @@ while(1)
 	N = reshape(N,[m,n,3]);				% Reshape into matrix
 
 	M = img;
-	M = (M > 0.3);
+	M = (M > 0.5);
 
 	% Compute gradients from normals
 	DFDX = -N(:,:,1) ./ N(:,:,3);
@@ -30,8 +30,8 @@ while(1)
 	[A, b] = constructSurface(DFDX, DFDY, lambda);
 
 	% Solve least-squares problem (MATLAB IMPLEMENTATION)
-	% [fxy, ~] = lsqr(A, b, [], nIters);			% MATLAB implmentation
-	fxy = A\b;
+	[fxy, ~] = lsqr(A, b, [], nIters);			% MATLAB implmentation
+	% fxy = A\b;
 
 	% Solve least-squares problem (OCTAVE IMPLEMENTATION)
 	% 
@@ -57,7 +57,9 @@ while(1)
 	% display('Finished reconstructing surface. Plotting results.')
 
 	figure(2);
-	subplot(1,2,1); imshow(FXY, []);  title('depth map');   colorbar;
-	subplot(1,2,2); surfplot(FXY);    title('surface');
-	% toc
-end
+	drawnow; subplot(2,2,1); imshow(FXY, []);  title('Depth Map');   colorbar;
+	drawnow; subplot(2,2,2); surfplot(FXY);    title('Front View'); view([0 90])
+	drawnow; subplot(2,2,3); surfplot(FXY);    title('Side View'); view([0 0])
+	drawnow; subplot(2,2,4); surfplot(FXY);    title('Surface');
+	toc
+% end
