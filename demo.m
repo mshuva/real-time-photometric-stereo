@@ -6,8 +6,8 @@ clear all; clc;
 
 initDemo;
 
-% while(1)
-	tic
+while(1)
+	% tic
 	getImage;							% Acquire images
 	[m,n] = size(img);					% Get size of image
 	nIters  = 1000;                     % # of iterative least-square steps
@@ -61,5 +61,5 @@ initDemo;
 	drawnow; subplot(2,2,2); surfplot(FXY);    title('Front View'); view([0 90])
 	drawnow; subplot(2,2,3); surfplot(FXY);    title('Side View'); view([0 0])
 	drawnow; subplot(2,2,4); surfplot(FXY);    title('Surface');
-	toc
-% end
+	% toc
+end
