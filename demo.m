@@ -19,6 +19,13 @@ height = vidInfo.MaxHeight;		% collect size of image
 width = vidInfo.MaxWidth;
 % ------------------------------ INITIALIZE WEBCAM ------------------------------
 
+% ------------------------------ GENERATE LIGHTING ------------------------------
+config1 = [1 0];
+config2 = [0 1];
+config3 = [1; 0];
+config4 = [0; 1];
+L = {config1, config2, config3, config4};
+% ------------------------------ GENERATE LIGHTING ------------------------------
 
 m = height*scaleFactor;				% Scale image size
 n = width*scaleFactor;				% Scale image size
