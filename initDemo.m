@@ -2,6 +2,8 @@
 vidDevice = imaq.VideoDevice;
 vidInfo = imaqhwinfo(vidDevice); % Acquire input video property
 % hVideoIn = vision.VideoPlayer('Name', 'Final Video','Position', [100 100 vidInfo.MaxWidth+20 vidInfo.MaxHeight+30]); 	% not sure what this is for...
+height = vidInfo.MaxHeight;		% collect size of image
+width = vidInfo.MaxWidth;
 % ------------------------------ INITIALIZE WEBCAM ------------------------------
 
 

@@ -27,7 +27,7 @@ for i = 1:4
 	showFullscreen(L{i})
 	colormap(gray)
 	drawnow
-	pause(0.5)
+	pause(1)
 	images{i} = step(vidDevice);							% Acquire single frame
 	img = imresize(rgb2gray(flipdim(images{i},2)),0.25); 	% Obtain the mirror image for displaying
 	I(:,i) = img(:);								% Store vectorized image as column
