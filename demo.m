@@ -6,7 +6,6 @@
 
 clear all; clc;
 
-% initDemo;
 nIters  = 1000;                     % # of iterative least-square steps
 lambda  = 0;                        % Tikhonov regularization parameter
 scaleFactor = 0.25;					% Scale image by this
@@ -14,7 +13,6 @@ scaleFactor = 0.25;					% Scale image by this
 % ------------------------------ INITIALIZE WEBCAM ------------------------------
 vidDevice = imaq.VideoDevice;
 vidInfo = imaqhwinfo(vidDevice); % Acquire input video property
-% hVideoIn = vision.VideoPlayer('Name', 'Final Video','Position', [100 100 vidInfo.MaxWidth+20 vidInfo.MaxHeight+30]); 	% not sure what this is for...
 height = vidInfo.MaxHeight;		% collect size of image
 width = vidInfo.MaxWidth;
 % ------------------------------ INITIALIZE WEBCAM ------------------------------
@@ -30,19 +28,18 @@ L = {config1, config2, config3, config4};
 m = height*scaleFactor;				% Scale image size
 n = width*scaleFactor;				% Scale image size
 
-I = ones(m*n,4); M = zeros(m,n);
+I = ones(m*n,4); M = zeros(m,n);    % initialize image matrix
 i = 1;
 
 while(1)
-    i = i + 1; i = mod(i-1,4)+1;		% Need to cycle through images
+    i = i + 1; i = mod(i-1,4)+1;		% Need to cycle through images and lighting
     
     figure(1)
     showFullscreen(L{i})
     colormap(gray)
     drawnow
-    
 % ------------------------------ BEGIN PROCESSING ------------------------------
-    [U,S,V] = svds(I,3);				% Take sparse SVD
+    [U,~,~] = svds(I,3);				% Take sparse SVD, only need left singular vectors
     N = [U(:,2:3) U(:,1)];				% Top 3 left singular vectors correspond to (z,x,y) normal
     N = reshape(N,[m,n,3]);				% Reshape into matrix
     
@@ -55,9 +52,9 @@ while(1)
     % Construct least-squares problem from gradients
     [A, b] = constructSurface(DFDX, DFDY, lambda);
     
-    % Solve least-squares problem (MATLAB IMPLEMENTATION)
-	% [fxy, ~] = lsqr(A, b, [], nIters);
-    fxy = A\b;
+    % Solve least-squares problem
+	[fxy, ~] = lsqr(A, b, [], nIters);
+    % fxy = A\b;
     
     % Format surface
     FXY = reshape(fxy, [m, n]);         			% Reshape into matrix
