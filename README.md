@@ -14,5 +14,3 @@ demo
 
 ### Overview of Implementation
 WORK IN PROGRESS
-
-\\[ x = 2 \\]
