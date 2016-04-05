@@ -15,4 +15,4 @@ demo
 ### Overview of Implementation
 WORK IN PROGRESS
 
-\[ x = 2 \]
+\\[ x = 2 \\]
